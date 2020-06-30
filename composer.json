@@ -1,0 +1,30 @@
+{
+	"name": "femastudios/enums",
+	"description": "A highly flexible and customizable enum library for PHP",
+	"type": "library",
+	"license": "GPL-3.0-only",
+	"authors": [
+		{
+			"name": "Mauro Molin",
+			"email": "molin.mauro@femastudios.com"
+		}
+	],
+	"minimum-stability": "stable",
+	"require-dev": {
+		"phpunit/phpunit": "^9"
+	},
+	"require": {
+		"php": "^7.3",
+		"ext-mbstring": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"com\\femastudios\\enums\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"com\\femastudios\\enums\\tests\\": "tests/"
+		}
+	}
+}
