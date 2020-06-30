@@ -1,14 +1,17 @@
 <?php
-	declare(strict_types=1);
+    declare(strict_types=1);
 
-	namespace com\femastudios\enums\tests;
+    namespace com\femastudios\enums\tests;
 
-	/**
-	 *
-	 * @method static Color YELLOW()
-	 * @method static Color BROWN()
-	 * @method static Color MAGENTA()
-	 * @method static Color ORANGE()
-	 * @method static Color PINK()
-	 */
-	class Color extends BasicColor {}
+    use com\femastudios\enums\DocEnum;
+
+    /**
+     * @method static Color BLACK()
+     * @method static Color WHITE()
+     * @method static Color RED()
+     * @method static Color GREEN()
+     * @method static Color BLUE()
+     */
+    final class Color extends DocEnum {
+    }
+

@@ -13,7 +13,7 @@
 		private function __construct() {
 		}
 
-		protected static function loadAll(string $class, int $startOrdinal) : array {
+		protected static function loadAll(string $class) : array {
 			try {
 				$cls = new \ReflectionClass($class);
 			} catch (\ReflectionException $e) {
@@ -35,7 +35,6 @@
 							throw new EnumLoadingException('Error instantiating enum class of name ' . $name, 0, $e);
 						}
 						$enum->name = $name;
-						$enum->ordinal = $startOrdinal++;
 						$enums[] = $enum;
 					}
 				}

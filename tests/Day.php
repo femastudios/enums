@@ -15,7 +15,7 @@
 	 * @method static Day SATURDAY()
 	 * @method static Day SUNDAY()
 	 */
-	class Day extends ConstEnum {
+    final class Day extends ConstEnum {
 
 		private const ENUM_MONDAY = ['Mon', true];
 		private const ENUM_TUESDAY = ['Tue', true];

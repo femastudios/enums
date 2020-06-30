@@ -6,28 +6,24 @@
 	use com\femastudios\enums\EnumNotFoundException;
 	use PHPUnit\Framework\TestCase;
 
-	require_once 'BasicColor.php';
-	require_once 'Color.php';
-
 	class DocEnumTest extends TestCase {
 
 		public function testAll() : void {
-			static::assertSame(Color::RED(), BasicColor::RED());
-			static::assertSame(Color::RED(), Color::RED());
+			static::assertSame(Color::BLACK(), Color::BLACK());
 
 			static::assertNotSame(Color::RED(), Color::WHITE());
 
 			static::assertSame(0, Color::BLACK()->ordinal());
-			static::assertSame(8, Color::ORANGE()->ordinal());
+			static::assertSame(2, Color::RED()->ordinal());
 
 
-			static::assertSame('YELLOW', Color::YELLOW()->name());
-			static::assertSame('GREEN', BasicColor::GREEN()->name());
+			static::assertSame('RED', Color::RED()->name());
+			static::assertSame('GREEN', Color::GREEN()->name());
 		}
 
 		public function testEnumNotFound() : void {
 			$this->expectException(EnumNotFoundException::class);
 			/** @noinspection PhpUndefinedMethodInspection */
-			Color::SHOULDNT_EXIST();
+			Color::LIME();
 		}
 	}

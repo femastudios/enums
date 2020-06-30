@@ -13,14 +13,14 @@
 
 		private const PREFIX = 'ENUM_';
 
-		protected static function loadAll(string $class, int $startOrdinal) : array {
+		protected static function loadAll(string $class) : array {
 			try {
 				$cls = new \ReflectionClass($class);
 			} catch (\ReflectionException $e) {
 				throw new EnumLoadingException($e->getMessage(), $e->getCode(), $e);
 			}
 
-			$ret = [];
+			$enums = [];
 			foreach ($cls->getMethods() as $method) {
 				if ($method->isStatic() && $method->isPrivate()) {
 					$name = $method->getName();
@@ -32,12 +32,11 @@
 							throw new EnumLoadingException("The value returned by the method $class::$name must be a $class, " . (is_object($enum) ? get_class($enum) : gettype($enum)) . ' returned');
 						}
 						$enum->name = $name;
-						$enum->ordinal = $startOrdinal++;
-						$ret[] = $enum;
+						$enums[] = $enum;
 					}
 				}
 			}
-			return $ret;
+			return $enums;
 		}
 
 	}
