@@ -27,6 +27,8 @@
 			static::assertTrue(Day::MONDAY()->isWorkDay());
 			static::assertFalse(Day::SUNDAY()->isWorkDay());
 
+            static::assertSame(Day::MONDAY(), Day::fromName('MONDAY'));
+            static::assertSame(Day::MONDAY(), Day::fromOrdinal(0));
 		}
 
 		public function testEnumNotFound() : void {

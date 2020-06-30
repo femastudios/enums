@@ -19,6 +19,9 @@
 
 			static::assertSame('RED', Color::RED()->name());
 			static::assertSame('GREEN', Color::GREEN()->name());
+
+			static::assertSame(Color::GREEN(), Color::fromName('GREEN'));
+			static::assertSame(Color::GREEN(), Color::fromOrdinal(3));
 		}
 
 		public function testEnumNotFound() : void {
