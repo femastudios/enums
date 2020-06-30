@@ -60,7 +60,7 @@ This is all you have to do in order to declare your enum. The documentation will
 This is the only implementation that parses the documentation. In all the other examples, this doc is present only to help the IDE, but it can safely be omitted.
 
 ### ConstEnum
-While the precedent method is very easy, it doesn't provide a lot of flexibility. Let's say we want to add some parameters to our enum. We can do so like this:
+While the previous method is very easy, it doesn't provide a lot of flexibility. Let's say we want to add some parameters to our enum. We can do so like this:
 ```php
 /**
  *
@@ -153,7 +153,7 @@ final class IntAlgorithm extends \com\femastudios\enums\MethodEnum {
 }
 ```
 
-As you can see, the task of instantiating the enum is completely handed off to the library user, thus allowing any kind of complex logic.
+As you can see, the task of instantiating the enum is completely handed off to the programmer, thus allowing any kind of complex logic.
 
 Similarly to the const implementation, the methods to be considered must be `private`, `static` and start with `ENUM_`. 
 
