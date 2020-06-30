@@ -12,7 +12,7 @@ Available as composer package `femastudios/enums`. PHP 7.3 or greater required.
  * @method static Greeting HELLO()
  * @method static Greeting GOOD_MORNING()
  * @method static Greeting GOOD_EVENING()
-*/
+ */
 final class Greeting extends \com\femastudios\enums\DocEnum {}
 
 Greeting::HELLO(); // Will return an instance
