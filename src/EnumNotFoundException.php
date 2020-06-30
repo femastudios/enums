@@ -6,6 +6,6 @@
 	/**
 	 * Thrown when a non-existing enum is queried
 	 */
-	class EnumNotFoundException extends \RuntimeException {
+	final class EnumNotFoundException extends \RuntimeException {
 
 	}

@@ -6,6 +6,6 @@
 	/**
 	 * Thrown when there's a problem loading an enumerator
 	 */
-	class EnumLoadingException extends \RuntimeException {
+    final class EnumLoadingException extends \RuntimeException {
 
 	}
