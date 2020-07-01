@@ -3,37 +3,35 @@
 
 	namespace com\femastudios\enums\tests;
 
-	use com\femastudios\enums\EnumNotFoundException;
+	use com\femastudios\enums\ConstEnum;
+    use com\femastudios\enums\EnumNotFoundException;
 	use PHPUnit\Framework\TestCase;
 
 	require_once 'Day.php';
 
-	class ConstEnumTest extends TestCase {
+    final class ConstEnumTest extends AbstractEnumTest {
 
-		public function testAll() : void {
-			static::assertSame(Day::MONDAY(), Day::MONDAY());
-
-			static::assertNotSame(Day::TUESDAY(), Day::SUNDAY());
-
-			static::assertSame(0, Day::MONDAY()->ordinal());
-			static::assertSame(5, Day::SATURDAY()->ordinal());
-
-			static::assertSame('MONDAY', Day::MONDAY()->name());
-			static::assertSame('SATURDAY', Day::SATURDAY()->name());
-
+		public function testParams() : void {
 			static::assertSame('Mon', Day::MONDAY()->getAbbreviation());
 			static::assertSame('Sat', Day::SATURDAY()->getAbbreviation());
 
 			static::assertTrue(Day::MONDAY()->isWorkDay());
 			static::assertFalse(Day::SUNDAY()->isWorkDay());
-
-            static::assertSame(Day::MONDAY(), Day::fromName('MONDAY'));
-            static::assertSame(Day::MONDAY(), Day::fromOrdinal(0));
 		}
 
-		public function testEnumNotFound() : void {
-			$this->expectException(EnumNotFoundException::class);
-			/** @noinspection PhpUndefinedMethodInspection */
-			Day::LAZYDAY();
-		}
-	}
+        protected static function enumClass() : string {
+            return Day::class;
+        }
+
+        protected static function expectedEnums() : array {
+            return [
+                Day::MONDAY(),
+                Day::TUESDAY(),
+                Day::WEDNESDAY(),
+                Day::THURSDAY(),
+                Day::FRIDAY(),
+                Day::SATURDAY(),
+                Day::SUNDAY(),
+            ];
+        }
+    }

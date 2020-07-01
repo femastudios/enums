@@ -1,32 +1,21 @@
 <?php
-	declare(strict_types=1);
+    declare(strict_types=1);
 
-	namespace com\femastudios\enums\tests;
+    namespace com\femastudios\enums\tests;
 
-	use com\femastudios\enums\EnumNotFoundException;
-	use PHPUnit\Framework\TestCase;
+    final class DocEnumTest extends AbstractEnumTest {
 
-	class DocEnumTest extends TestCase {
+        protected static function enumClass() : string {
+            return Color::class;
+        }
 
-		public function testAll() : void {
-			static::assertSame(Color::BLACK(), Color::BLACK());
-
-			static::assertNotSame(Color::RED(), Color::WHITE());
-
-			static::assertSame(0, Color::BLACK()->ordinal());
-			static::assertSame(2, Color::RED()->ordinal());
-
-
-			static::assertSame('RED', Color::RED()->name());
-			static::assertSame('GREEN', Color::GREEN()->name());
-
-			static::assertSame(Color::GREEN(), Color::fromName('GREEN'));
-			static::assertSame(Color::GREEN(), Color::fromOrdinal(3));
-		}
-
-		public function testEnumNotFound() : void {
-			$this->expectException(EnumNotFoundException::class);
-			/** @noinspection PhpUndefinedMethodInspection */
-			Color::LIME();
-		}
-	}
+        protected static function expectedEnums() : array {
+            return [
+                Color::BLACK(),
+                Color::WHITE(),
+                Color::RED(),
+                Color::GREEN(),
+                Color::BLUE(),
+            ];
+        }
+    }
