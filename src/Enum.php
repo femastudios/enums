@@ -34,7 +34,7 @@
         }
 
         /**
-         * Alias of name()
+         * The default __toString() implementation returns the enum name
          * @return string the name of the enum
          */
         public function __toString() : string {
