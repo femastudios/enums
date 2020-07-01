@@ -85,6 +85,7 @@ final class Day extends \com\femastudios\enums\ConstEnum {
     private $abbreviation, $isWorkDay;
     
     private function __construct(string $abbreviation, bool $isWorkDay) {
+        parent::__construct();
         $this->abbreviation = $abbreviation;
         $this->isWorkDay = $isWorkDay;
     }
@@ -98,7 +99,7 @@ final class Day extends \com\femastudios\enums\ConstEnum {
     }
 }
 ```
-As you can see from the code, it's very easy to pass parameters to the constructor of your enum. In particular implementation though, you can only pass constant parameters. 
+As you can see from the code, it's very easy to pass parameters to the constructor of your enum. In this particular implementation though, you can only pass constant parameters. 
 
 To be considered, each const must be `private` and start with `ENUM_`: its value must be an array containing the parameters to pass to the constructor.
 
@@ -116,6 +117,7 @@ final class IntAlgorithm extends \com\femastudios\enums\MethodEnum {
     private $alg;
 
     private function __construct(callable $alg) {
+        parent::__construct();
         $this->alg = $alg;
     }
 
