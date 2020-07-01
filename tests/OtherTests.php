@@ -11,6 +11,4 @@
             $this->expectException(\DomainException::class);
             Day::MONDAY()->compareTo(IntAlgorithm::SUM());
         }
-
-
     }

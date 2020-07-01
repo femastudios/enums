@@ -9,6 +9,10 @@
             return Color::class;
         }
 
+        protected static function wrongEnumClass() : string {
+            return WrongDocEnum::class;
+        }
+
         protected static function expectedEnums() : array {
             return [
                 Color::BLACK(),

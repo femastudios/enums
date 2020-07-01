@@ -17,6 +17,7 @@
 		private $alg;
 
 		private function __construct(callable $alg) {
+		    parent::__construct();
 			$this->alg = $alg;
 		}
 

@@ -4,12 +4,15 @@
     namespace com\femastudios\enums\tests;
 
     use com\femastudios\enums\Enum;
+    use com\femastudios\enums\EnumLoadingException;
     use com\femastudios\enums\EnumNotFoundException;
     use PHPUnit\Framework\TestCase;
 
     abstract class AbstractEnumTest extends TestCase {
 
         protected abstract static function enumClass() : string;
+
+        protected abstract static function wrongEnumClass() : string;
 
         /**
          * @return Enum[]
@@ -98,5 +101,12 @@
             /** @var Enum $cls */
             $cls = static::enumClass();
             $cls::fromOrdinal(1000);
+        }
+
+        public function testWrongImpl() : void {
+            $this->expectException(EnumLoadingException::class);
+            /** @var Enum $cls */
+            $cls = static::wrongEnumClass();
+            $cls::getAll();
         }
     }

@@ -6,7 +6,6 @@
 	use com\femastudios\enums\ConstEnum;
 
     /**
-	 *
 	 * @method static Day MONDAY()
 	 * @method static Day TUESDAY()
 	 * @method static Day WEDNESDAY()
@@ -28,6 +27,7 @@
 		private $abbreviation, $isWorkDay;
 
 		private function __construct(string $abbreviation, bool $isWorkDay) {
+		    parent::__construct();
 			$this->abbreviation = $abbreviation;
 			$this->isWorkDay = $isWorkDay;
 		}
