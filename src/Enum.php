@@ -18,6 +18,8 @@
         /** @var int the ordinal of this enums */
         protected $ordinal;
 
+        protected function __construct() {
+        }
 
         /**
          * @return string the name of the enum
@@ -68,7 +70,7 @@
                 }
                 if (!$cls->isFinal()) {
                     throw new EnumLoadingException("Enum class $className must be final");
-                } elseif (!$cls->getConstructor()->isPrivate()) {
+                } elseif ($cls->getConstructor()->getDeclaringClass()->getName() !== $cls->getName() && !$cls->getConstructor()->isPrivate()) {
                     throw new EnumLoadingException("Enum class $className constructor must be private");
                 }
                 $enums = [];
