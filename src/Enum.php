@@ -73,6 +73,9 @@
                 }
                 $enums = [];
                 $loaded = static::loadAll($className);
+                if($loaded === []) {
+                    throw new EnumLoadingException("An enum must have at least one item, none returned for class $className");
+                }
                 $ordinal = 0;
                 foreach ($loaded as $enum) {
                     if ($enum->name === null || $enum->name === '') {
