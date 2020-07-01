@@ -10,9 +10,6 @@
      */
     abstract class DocEnum extends Enum {
 
-        private function __construct() {
-        }
-
         protected static final function loadAll(string $class) : array {
             try {
                 $cls = new \ReflectionClass($class);
