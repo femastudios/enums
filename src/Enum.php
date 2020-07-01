@@ -22,14 +22,14 @@
         /**
          * @return string the name of the enum
          */
-        public function name() : string {
+        public final function name() : string {
             return $this->name;
         }
 
         /**
          * @return int a number representing this enum. Starts at 0.
          */
-        public function ordinal() : int {
+        public final function ordinal() : int {
             return $this->ordinal;
         }
 
@@ -42,9 +42,23 @@
         }
 
         /**
+         * Compares this enum to another one by using their ordinals
+         * @param Enum $other an enum object of the same class as this one
+         * @return int this ordinal <=> other ordinal
+         * @throws \DomainException if the given enum is of a different type
+         */
+        public function compareTo(Enum $other) : int {
+            if (get_class($this) !== get_class($other)) {
+                throw new \DomainException('Expected enum of type ' . get_class($this) . ', ' . get_class($other) . ' given!');
+            } else {
+                return $this->ordinal <=> $other->ordinal;
+            }
+        }
+
+        /**
          * @return Enum[] associative array of {@link Enum} instances, where the key is the enum name
          */
-        public static function getAll() : array {
+        public static final function getAll() : array {
             $className = static::class;
             if (!isset(self::$enums[$className])) {
                 try {
@@ -90,7 +104,7 @@
          * @return Enum the enum that corresponds to the passed name
          * @throws EnumNotFoundException if an enum with the passed name is not found
          */
-        public static function fromName(string $name) : Enum {
+        public static final function fromName(string $name) : Enum {
             $all = static::getAll();
             if (isset($all[$name])) {
                 return $all[$name];
@@ -105,7 +119,7 @@
          * @return Enum the enum that corresponds to the passed ordinal
          * @throws EnumNotFoundException if an enum with the passed ordinal is not found
          */
-        public static function fromOrdinal(int $ordinal) : Enum {
+        public static final function fromOrdinal(int $ordinal) : Enum {
             foreach (static::getAll() as $item) {
                 if ($item->ordinal() === $ordinal) {
                     return $item;
@@ -114,9 +128,9 @@
             throw new EnumNotFoundException('The enum ' . static::class . " with ordinal '$ordinal' wasn't found!");
         }
 
-        public static function __callStatic(string $name, array $arguments) {
+        public static final function __callStatic(string $name, array $arguments) {
             if (count($arguments) !== 0) {
-                throw new \DomainException("Can't pass arguments when requesting an enum!");
+                throw new \BadMethodCallException("Cannot pass arguments when requesting an enum!");
             }
             return static::fromName($name);
         }

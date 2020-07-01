@@ -13,7 +13,7 @@
 
 		private const PREFIX = 'ENUM_';
 
-		protected static function loadAll(string $class) : array {
+		protected static final function loadAll(string $class) : array {
 			try {
 				$cls = new \ReflectionClass($class);
 			} catch (\ReflectionException $e) {
