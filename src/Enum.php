@@ -19,6 +19,12 @@
         protected $ordinal;
 
         protected function __construct() {
+            // This constructor exists in order to avoid forcing the user to put
+            // an empty private constructor on each enum implementation
+
+            // This constructor is protected instead of private because it allows users to
+            // create a param-less constructor and to do logic upon enum initialization while
+            // calling the super constructor (this one), as it is best practice.
         }
 
         /**
@@ -70,12 +76,19 @@
                 }
                 if (!$cls->isFinal()) {
                     throw new EnumLoadingException("Enum class $className must be final");
-                } elseif ($cls->getConstructor()->getDeclaringClass()->getName() !== Enum::class && !$cls->getConstructor()->isPrivate()) {
-                    throw new EnumLoadingException("Enum class $className constructor must be private");
+                } else {
+                    $constr = $cls->getConstructor();
+                    if ($constr->getDeclaringClass()->getName() === $cls->getName() && !$constr->isPrivate()) {
+                        // Constructor is explicitly declared in final class of hierarchy, but it is not private
+                        throw new EnumLoadingException("Enum class $className constructor must be private");
+                    } else if(!$constr->isProtected() && !$constr->isPrivate()) {
+                        // Constructor is declared in a middle class neither private or protected
+                        throw new EnumLoadingException("Enum class $className has a public constructor. Enums must have a private constructor");
+                    }
                 }
                 $enums = [];
                 $loaded = static::loadAll($className);
-                if($loaded === []) {
+                if ($loaded === []) {
                     throw new EnumLoadingException("An enum must have at least one item, none returned for class $className");
                 }
                 $ordinal = 0;
