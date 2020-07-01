@@ -1,6 +1,8 @@
 # enums
 A highly flexible and customizable enum library for PHP.
 
+It provides a Java-flavored enumeration in PHP. 
+
 ## Installation
 Available as composer package `femastudios/enums`. PHP 7.3 or greater required.
 
@@ -15,7 +17,7 @@ Available as composer package `femastudios/enums`. PHP 7.3 or greater required.
  */
 final class Greeting extends \com\femastudios\enums\DocEnum {}
 
-Greeting::HELLO(); // Will return an instance
+Greeting::HELLO(); // Will return a Greeting instance
 ```
 
 Remember that enums are **single-instance**, so `Greeting::HELLO() === Greeting::HELLO()` will always be true.
@@ -26,7 +28,7 @@ Remember that enums are **single-instance**, so `Greeting::HELLO() === Greeting:
 * `ConstEnum`: More flexible way of declaring enum through private consts that allows to pass constant values to the constructor.
 * `MethodEnum`: Leaves to the user the task to instantiate the enum, removing the const limit of the above implementation.
 * `EnumNotFoundException`: exception thrown when you request an enum that does not exist.
-* `EnumLoadingException`: exception thrown when there is a problem with enum instantiating.
+* `EnumLoadingException`: exception thrown when there is a problem with enum instantiation.
 
 
 ### Available methods on enums
