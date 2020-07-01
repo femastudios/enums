@@ -1,11 +1,11 @@
 <?php
-	declare(strict_types=1);
+    declare(strict_types=1);
 
-	namespace com\femastudios\enums;
+    namespace com\femastudios\enums;
 
-	/**
-	 * Thrown when a non-existing enum is queried
-	 */
-	final class EnumNotFoundException extends \RuntimeException {
+    /**
+     * Thrown when a non-existing enum is queried
+     */
+    final class EnumNotFoundException extends \RuntimeException {
 
-	}
+    }
