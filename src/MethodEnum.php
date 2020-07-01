@@ -29,7 +29,7 @@
                         $method->setAccessible(true);
                         $enum = $method->invoke(null);
                         if (!($enum instanceof $class)) {
-                            throw new EnumLoadingException("The value returned by the method $class::$name must be a $class, " . (is_object($enum) ? get_class($enum) : gettype($enum)) . ' returned');
+                            throw new EnumLoadingException("The value returned by the method $class::ENUM_$name must be a $class, " . (is_object($enum) ? get_class($enum) : gettype($enum)) . ' returned');
                         }
                         $enum->name = $name;
                         $enums[] = $enum;
