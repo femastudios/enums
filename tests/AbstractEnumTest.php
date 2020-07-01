@@ -79,6 +79,13 @@
             $cls::ENUM_THAT_DOES_NOT_EXIST();
         }
 
+        public function testEnumWithParams() : void {
+            $this->expectException(\BadMethodCallException::class);
+            $cls = static::enumClass();
+            /** @noinspection PhpUndefinedMethodInspection */
+            $cls::ENUM(123);
+        }
+
         public function testEnumNotFoundName() : void {
             $this->expectException(EnumNotFoundException::class);
             /** @var Enum $cls */
