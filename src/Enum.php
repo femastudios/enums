@@ -70,7 +70,7 @@
                 }
                 if (!$cls->isFinal()) {
                     throw new EnumLoadingException("Enum class $className must be final");
-                } elseif ($cls->getConstructor()->getDeclaringClass()->getName() !== $cls->getName() && !$cls->getConstructor()->isPrivate()) {
+                } elseif ($cls->getConstructor()->getDeclaringClass()->getName() !== Enum::class && !$cls->getConstructor()->isPrivate()) {
                     throw new EnumLoadingException("Enum class $className constructor must be private");
                 }
                 $enums = [];
